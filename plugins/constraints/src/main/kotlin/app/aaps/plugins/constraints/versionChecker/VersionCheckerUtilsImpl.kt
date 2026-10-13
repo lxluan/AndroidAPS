@@ -46,7 +46,10 @@ class VersionCheckerUtilsImpl @Inject constructor(
         }
     }
 
-    private fun checkVersion() = Unit
+    private fun checkVersion() {
+        // 不发起github网络请求，直接标记本次版本校验成功，刷新时间戳
+        setLastCheckTimestamp(dateUtil.now())
+    }
 
     @Suppress("SameParameterValue")
     override fun compareWithCurrentVersion(newVersion: String?, currentVersion: String) {
